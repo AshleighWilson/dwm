@@ -1450,7 +1450,7 @@ runautostart(void)
 	/* check if the autostart script directory exists */
 	if (! (stat(pathpfx, &sb) == 0 && S_ISDIR(sb.st_mode))) {
 		/* the XDG conformant path does not exist or is no directory
-		 * so we try ~/.dwm instead
+		 * so we try ~/.config/suckless/dwm instead
 		 */
 		char *pathpfx_new = realloc(pathpfx, strlen(home) + strlen(dwmdir) + 3);
 		if(pathpfx_new == NULL) {
@@ -1459,7 +1459,7 @@ runautostart(void)
 		}
    pathpfx = pathpfx_new;
 
-		if (sprintf(pathpfx, "%s/.%s", home, dwmdir) <= 0) {
+		if (sprintf(pathpfx, "%s/.config/suckless/%s", home, dwmdir) <= 0) {
 			free(pathpfx);
 			return;
 		}
