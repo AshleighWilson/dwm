@@ -6,7 +6,7 @@ include config.mk
 SRC = drw.c dwm.c util.c
 OBJ = ${SRC:.c=.o}
 
-all: options dwm install clean
+all: options dwm install
 
 options:
 	@echo dwm build options:
@@ -45,6 +45,10 @@ install: all
 	sed "s/VERSION/${VERSION}/g" < dwm.1 > ${DESTDIR}${MANPREFIX}/man1/dwm.1
 	chmod 644 ${DESTDIR}${MANPREFIX}/man1/dwm.1
 	cp dwm.desktop /usr/share/xsessions/
+	chmod 644 /usr/share/xsessions/dwm.desktop
+	cp startdwm /usr/bin/
+	chmod +x /usr/bin/startdwm
+	killall dwm
 
 uninstall:
 	rm -f ${DESTDIR}${PREFIX}/bin/dwm\
